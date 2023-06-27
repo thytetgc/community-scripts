@@ -11,6 +11,16 @@
 # If swap is less than ok amount, the script gives a warning.
 # If swap is also lower than min, the script gives an error.
 
+for ARGUMENT in "$@"
+do
+   KEY=$(echo $ARGUMENT | cut -f1 -d=)
+
+   KEY_LENGTH=${#KEY}
+   VALUE="${ARGUMENT:$KEY_LENGTH+1}"
+
+   export "$KEY"="$VALUE"
+done
+
 # Setting variables
 if [ -z "$ok" ];
 then
